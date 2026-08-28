@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio personal de Brayan Alexander Plata Gomez — Estudiante de Ingeniería de Sistemas, UDES Cúcuta.">
+  <title>Mi Portafolio — Brayan Plata</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- Header fijo con navegación anclada -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo">Mi Portafolio</a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <ul class="nav-list">
+          <li><a href="#perfil" class="nav-link">Perfil</a></li>
+          <li><a href="#habilidades" class="nav-link">Habilidades</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- Sección Perfil -->
+    <section id="perfil" class="section section--perfil" aria-labelledby="perfil-heading">
+      <div class="profile-card">
+        <div class="avatar-wrapper">
+          <img
+            src="img/perfil.jpg"
+            alt="Fotografía de Brayan Alexander Plata Gomez"
+            width="160"
+            height="160"
+            class="avatar-img"
+          >
+          <span class="badge" aria-label="Especialidad CSS3">CSS3</span>
+        </div>
+        <h1 id="perfil-heading" class="profile-name">Brayan Alexander Plata Gomez</h1>
+        <p class="profile-role">Estudiante de Ingeniería de Sistemas</p>
+        <p class="profile-university">Universidad de Santander (UDES) — Campus Cúcuta</p>
+      </div>
+    </section>
+
+    <!-- Sección Habilidades -->
+    <section id="habilidades" class="section section--habilidades" aria-labelledby="habilidades-heading">
+      <h2 id="habilidades-heading" class="section-title">Habilidades Técnicas</h2>
+      <ul class="skills-list">
+        <li class="skill-item skill-item--html">
+          <span class="skill-icon" aria-hidden="true">&#9672;</span>
+          <span class="skill-label">HTML5</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div>
+        </li>
+        <li class="skill-item skill-item--css">
+          <span class="skill-icon" aria-hidden="true">&#9672;</span>
+          <span class="skill-label">CSS3</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+        </li>
+        <li class="skill-item skill-item--js">
+          <span class="skill-icon" aria-hidden="true">&#9672;</span>
+          <span class="skill-label">JavaScript</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 75%;"></div></div>
+        </li>
+        <li class="skill-item skill-item--java">
+          <span class="skill-icon" aria-hidden="true">&#9672;</span>
+          <span class="skill-label">Java</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 70%;"></div></div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contacto" class="section section--contacto" aria-labelledby="contacto-heading">
+      <h2 id="contacto-heading" class="section-title">Contacto</h2>
+      <form class="contact-form" action="#" method="POST" novalidate>
+        <div class="form-group">
+          <label for="nombre" class="form-label">Nombre completo</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            class="form-input"
+            placeholder="Escribe tu nombre"
+            required
+            minlength="3"
+            autocomplete="name"
+          >
+        </div>
+        <div class="form-group">
+          <label for="correo" class="form-label">Correo electrónico</label>
+          <input
+            type="email"
+            id="correo"
+            name="correo"
+            class="form-input"
+            placeholder="ejemplo@correo.com"
+            required
+            autocomplete="email"
+          >
+        </div>
+        <div class="form-group">
+          <label for="mensaje" class="form-label">Mensaje</label>
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            class="form-input form-textarea"
+            placeholder="Escribe tu mensaje aquí..."
+            required
+            minlength="10"
+            rows="5"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Enviar mensaje</button>
+      </form>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Brayan Alexander Plata Gomez — UDES, Cúcuta. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
