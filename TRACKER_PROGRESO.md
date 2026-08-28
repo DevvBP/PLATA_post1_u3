@@ -7,14 +7,14 @@
 - [COMPLETADO] Copiar imagen de perfil a parte-1-perfil-css3/img/perfil.jpg
 
 ## Fase 1: Parte 1 — Página de Perfil con CSS3
-- [PENDIENTE] Desarrollar parte-1-perfil-css3/index.html
-- [PENDIENTE] Desarrollar parte-1-perfil-css3/css/estilos.css
-- [PENDIENTE] Commits atómicos y push
+- [COMPLETADO] Desarrollar parte-1-perfil-css3/index.html
+- [COMPLETADO] Desarrollar parte-1-perfil-css3/css/estilos.css
+- [COMPLETADO] Commits atómicos y push
 
 ## Fase 2: Parte 2 — Dashboard con Flexbox y Grid
-- [PENDIENTE] Desarrollar parte-2-dashboard-grid/index.html
-- [PENDIENTE] Desarrollar parte-2-dashboard-grid/css/dashboard.css
-- [PENDIENTE] Commits atómicos y push
+- [COMPLETADO] Desarrollar parte-2-dashboard-grid/index.html
+- [COMPLETADO] Desarrollar parte-2-dashboard-grid/css/dashboard.css
+- [COMPLETADO] Commits atómicos y push
 
 ## Fase 3: Documentación y README.md Final
 - [PENDIENTE] Sobrescribir README.md con documentación completa
