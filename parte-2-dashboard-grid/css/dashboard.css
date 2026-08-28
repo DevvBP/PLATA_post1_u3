@@ -1,0 +1,616 @@
+/* ==========================================================================
+   dashboard.css — Dashboard con Flexbox y CSS Grid
+   Brayan Alexander Plata Gomez — UDES, Cúcuta
+   ========================================================================== */
+
+/* Reset global */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+  /* Paleta */
+  --color-bg: #0b0b14;
+  --color-surface: #12121f;
+  --color-surface-hover: #1a1a2e;
+  --color-sidebar: #0e0e1a;
+  --color-topbar: #101020;
+  --color-primary: #4361ee;
+  --color-primary-soft: rgba(67, 97, 238, 0.15);
+  --color-accent: #7209b7;
+  --color-text: #e4e4f0;
+  --color-text-muted: #8888a8;
+  --color-border: #22224a;
+
+  --color-green: #06d6a0;
+  --color-yellow: #ffd166;
+  --color-red: #ef476f;
+  --color-blue: #118ab2;
+
+  /* Espaciado */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  /* Tipografía */
+  --font-base: 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+  /* Radios */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* Transiciones */
+  --transition-fast: 180ms ease;
+  --transition-base: 280ms ease;
+
+  /* Dimensiones */
+  --sidebar-width: 240px;
+  --topbar-height: 60px;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   Layout Principal con CSS Grid — grid-template-areas
+   El layout se estructura como un grid de 2 columnas y 2 filas:
+   - Columna izquierda: sidebar (ancho fijo)
+   - Columna derecha: topbar (fila superior) + main (fila inferior)
+   -------------------------------------------------------------------------- */
+.app-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--topbar-height) 1fr;
+  grid-template-areas:
+    "sidebar topbar"
+    "sidebar main";
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar — Flexbox (flex-direction: column)
+   Se utiliza Flexbox en columna para distribuir verticalmente el logo,
+   la navegación y el footer del sidebar. El spacer (flex: 1 en sidebar-nav)
+   empuja el footer hacia abajo.
+   -------------------------------------------------------------------------- */
+.sidebar {
+  grid-area: sidebar;
+  background-color: var(--color-sidebar);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md) 0;
+  overflow-y: auto;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: 0 var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.sidebar-logo {
+  font-size: 1.4rem;
+  color: var(--color-primary);
+}
+
+.sidebar-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.sidebar-nav {
+  flex: 1;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  padding: 0 var(--space-xs);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.sidebar-link:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.sidebar-link--active {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.sidebar-icon {
+  font-size: 0.95rem;
+  width: 20px;
+  text-align: center;
+}
+
+.sidebar-footer {
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-sm);
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.user-avatar-sm {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.user-role {
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Topbar — Flexbox (justify-content: space-between)
+   Distribuye el contenido izquierdo y derecho del topbar en extremos
+   opuestos usando justify-content: space-between.
+   -------------------------------------------------------------------------- */
+.topbar {
+  grid-area: topbar;
+  background-color: var(--color-topbar);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-md);
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: var(--space-3xs);
+}
+
+.topbar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.topbar-greeting {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.topbar-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3xs) var(--space-2xs);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.topbar-btn:hover {
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Dashboard Main
+   -------------------------------------------------------------------------- */
+.dashboard-main {
+  grid-area: main;
+  padding: var(--space-md);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* --------------------------------------------------------------------------
+   Stats Row — Grid responsivo con repeat(auto-fill, minmax(200px, 1fr))
+   Permite que las tarjetas se redistribuyan automáticamente según el
+   espacio disponible sin necesidad de media queries específicas.
+   -------------------------------------------------------------------------- */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-md);
+}
+
+.stat-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-primary);
+}
+
+.stat-icon {
+  font-size: 1.6rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.stat-card--projects .stat-icon { background-color: rgba(67, 97, 238, 0.15); color: var(--color-primary); }
+.stat-card--tasks .stat-icon { background-color: rgba(255, 209, 102, 0.15); color: var(--color-yellow); }
+.stat-card--completed .stat-icon { background-color: rgba(6, 214, 160, 0.15); color: var(--color-green); }
+.stat-card--hours .stat-icon { background-color: rgba(114, 9, 183, 0.15); color: var(--color-accent); }
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* --------------------------------------------------------------------------
+   Content Row — Grid de 2 columnas (2fr 1fr)
+   La primera columna (card principal con tabla) ocupa 2 fracciones y la
+   segunda columna (card lateral de actividad) ocupa 1 fracción.
+   -------------------------------------------------------------------------- */
+.content-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-md);
+}
+
+/* --------------------------------------------------------------------------
+   Colocación explícita de .card--notes con grid-column: 1 / -1
+   Se fuerza que la tarjeta de notas del sprint ocupe el ancho completo de
+   la fila inferior, abarcando todas las columnas del grid padre.
+   -------------------------------------------------------------------------- */
+.card--notes {
+  grid-column: 1 / -1;
+}
+
+/* --------------------------------------------------------------------------
+   Card genérica
+   -------------------------------------------------------------------------- */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.card-header {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.card-body {
+  padding: var(--space-sm) var(--space-md);
+}
+
+/* --------------------------------------------------------------------------
+   Tabla de proyectos
+   -------------------------------------------------------------------------- */
+.projects-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+.projects-table th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: var(--space-2xs) var(--space-2xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.projects-table td {
+  padding: var(--space-xs) var(--space-2xs);
+  vertical-align: middle;
+}
+
+/*
+   Franjas zebra con :nth-child(even):
+   Se aplica un fondo alternado en las filas pares de la tabla para mejorar
+   la legibilidad y el seguimiento visual de cada registro.
+*/
+.projects-table tbody tr:nth-child(even) {
+  background-color: var(--color-surface-hover);
+}
+
+.projects-table tbody tr {
+  transition: background-color var(--transition-fast);
+}
+
+.projects-table tbody tr:hover {
+  background-color: rgba(67, 97, 238, 0.08);
+}
+
+/* Badges de estado */
+.table-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: var(--space-3xs) var(--space-2xs);
+  border-radius: 999px;
+}
+
+.table-badge--active {
+  background-color: rgba(67, 97, 238, 0.15);
+  color: var(--color-primary);
+}
+
+.table-badge--review {
+  background-color: rgba(255, 209, 102, 0.15);
+  color: var(--color-yellow);
+}
+
+.table-badge--paused {
+  background-color: rgba(239, 71, 111, 0.15);
+  color: var(--color-red);
+}
+
+.table-badge--done {
+  background-color: rgba(6, 214, 160, 0.15);
+  color: var(--color-green);
+}
+
+/* Barras de progreso */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-bg);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  transition: width 500ms ease;
+}
+
+.progress-fill--done {
+  background: linear-gradient(90deg, var(--color-green), #0aff9d);
+}
+
+/* --------------------------------------------------------------------------
+   Lista de actividad
+   -------------------------------------------------------------------------- */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.activity-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+}
+
+.activity-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.activity-dot--commit { background-color: var(--color-primary); }
+.activity-dot--task { background-color: var(--color-green); }
+.activity-dot--review { background-color: var(--color-yellow); }
+.activity-dot--deploy { background-color: var(--color-accent); }
+
+.activity-text {
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.activity-time {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--color-text-muted);
+  margin-top: var(--space-3xs);
+}
+
+/* --------------------------------------------------------------------------
+   Notas del Sprint
+   -------------------------------------------------------------------------- */
+.notes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-sm);
+}
+
+.note-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.note-bullet {
+  color: var(--color-primary);
+  font-size: 0.5rem;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Responsivo — @media max-width: 768px
+   Breakpoint de 768px seleccionado por ser el punto estándar donde los
+   dispositivos tablet en orientación vertical necesitan un layout de una
+   sola columna. Se reorganiza el grid completo a una columna y se oculta
+   el sidebar para maximizar el área de contenido.
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .app-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--topbar-height) 1fr;
+    grid-template-areas:
+      "topbar"
+      "main";
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .content-row {
+    grid-template-columns: 1fr;
+  }
+
+  .card--notes {
+    grid-column: 1;
+  }
+
+  .topbar-greeting {
+    display: none;
+  }
+
+  .stats-row {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .dashboard-main {
+    padding: var(--space-sm);
+  }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .notes-list {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: var(--space-sm);
+  }
+}
