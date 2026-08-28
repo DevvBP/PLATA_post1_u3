@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dashboard de gestión de proyectos con Flexbox y CSS Grid — Brayan Plata, UDES.">
+  <title>Dashboard — Brayan Plata</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Sidebar con Flexbox columna -->
+    <aside class="sidebar" aria-label="Menú lateral">
+      <div class="sidebar-brand">
+        <span class="sidebar-logo" aria-hidden="true">&#9670;</span>
+        <span class="sidebar-title">DevPanel</span>
+      </div>
+      <nav class="sidebar-nav" aria-label="Navegación del panel">
+        <ul class="sidebar-menu">
+          <li><a href="#" class="sidebar-link sidebar-link--active" aria-current="page">
+            <span class="sidebar-icon" aria-hidden="true">&#9632;</span> Dashboard
+          </a></li>
+          <li><a href="#" class="sidebar-link">
+            <span class="sidebar-icon" aria-hidden="true">&#9830;</span> Proyectos
+          </a></li>
+          <li><a href="#" class="sidebar-link">
+            <span class="sidebar-icon" aria-hidden="true">&#9733;</span> Tareas
+          </a></li>
+          <li><a href="#" class="sidebar-link">
+            <span class="sidebar-icon" aria-hidden="true">&#9881;</span> Configuración
+          </a></li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">
+          <div class="user-avatar-sm" aria-hidden="true">BP</div>
+          <div class="user-info">
+            <span class="user-name">Brayan Plata</span>
+            <span class="user-role">Desarrollador</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Topbar con Flexbox justify-content: space-between -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="menu-toggle" aria-label="Abrir menú lateral" type="button">&#9776;</button>
+        <h1 class="topbar-title">Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <span class="topbar-greeting">Bienvenido, <strong>Brayan</strong></span>
+        <button class="topbar-btn" type="button" aria-label="Notificaciones">&#128276;</button>
+      </div>
+    </header>
+
+    <!-- Contenido principal del dashboard -->
+    <main class="dashboard-main">
+
+      <!-- Fila de estadísticas: Grid responsivo auto-fill -->
+      <section class="stats-row" aria-label="Resumen de estadísticas">
+        <article class="stat-card stat-card--projects">
+          <span class="stat-icon" aria-hidden="true">&#128193;</span>
+          <div class="stat-content">
+            <span class="stat-value">12</span>
+            <span class="stat-label">Proyectos</span>
+          </div>
+        </article>
+        <article class="stat-card stat-card--tasks">
+          <span class="stat-icon" aria-hidden="true">&#9998;</span>
+          <div class="stat-content">
+            <span class="stat-value">48</span>
+            <span class="stat-label">Tareas activas</span>
+          </div>
+        </article>
+        <article class="stat-card stat-card--completed">
+          <span class="stat-icon" aria-hidden="true">&#10003;</span>
+          <div class="stat-content">
+            <span class="stat-value">156</span>
+            <span class="stat-label">Completadas</span>
+          </div>
+        </article>
+        <article class="stat-card stat-card--hours">
+          <span class="stat-icon" aria-hidden="true">&#9201;</span>
+          <div class="stat-content">
+            <span class="stat-value">320h</span>
+            <span class="stat-label">Horas registradas</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- Fila de contenido: Grid 2 columnas -->
+      <section class="content-row" aria-label="Detalles del proyecto">
+
+        <!-- Card principal: tabla de proyectos -->
+        <article class="card card--main">
+          <header class="card-header">
+            <h2 class="card-title">Proyectos Recientes</h2>
+          </header>
+          <div class="card-body">
+            <table class="projects-table" aria-label="Tabla de proyectos recientes">
+              <thead>
+                <tr>
+                  <th scope="col">Proyecto</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Progreso</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Landing Page UDES</td>
+                  <td><span class="table-badge table-badge--active">Activo</span></td>
+                  <td>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>API RESTful Node.js</td>
+                  <td><span class="table-badge table-badge--review">En revisión</span></td>
+                  <td>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 90%;"></div></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Dashboard CSS Grid</td>
+                  <td><span class="table-badge table-badge--active">Activo</span></td>
+                  <td>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 60%;"></div></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>App Móvil Flutter</td>
+                  <td><span class="table-badge table-badge--paused">Pausado</span></td>
+                  <td>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 30%;"></div></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sistema de Inventario</td>
+                  <td><span class="table-badge table-badge--done">Terminado</span></td>
+                  <td>
+                    <div class="progress-bar"><div class="progress-fill progress-fill--done" style="width: 100%;"></div></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Portafolio Personal</td>
+                  <td><span class="table-badge table-badge--active">Activo</span></td>
+                  <td>
+                    <div class="progress-bar"><div class="progress-fill" style="width: 85%;"></div></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <!-- Card lateral: lista de actividad -->
+        <article class="card card--side">
+          <header class="card-header">
+            <h2 class="card-title">Actividad Reciente</h2>
+          </header>
+          <div class="card-body">
+            <ul class="activity-list">
+              <li class="activity-item">
+                <span class="activity-dot activity-dot--commit" aria-hidden="true"></span>
+                <div class="activity-text">
+                  <strong>Commit</strong> en Landing Page UDES
+                  <time class="activity-time" datetime="2026-08-28">Hace 2h</time>
+                </div>
+              </li>
+              <li class="activity-item">
+                <span class="activity-dot activity-dot--task" aria-hidden="true"></span>
+                <div class="activity-text">
+                  <strong>Tarea completada</strong> en API RESTful
+                  <time class="activity-time" datetime="2026-08-28">Hace 4h</time>
+                </div>
+              </li>
+              <li class="activity-item">
+                <span class="activity-dot activity-dot--review" aria-hidden="true"></span>
+                <div class="activity-text">
+                  <strong>Revisión solicitada</strong> en Dashboard
+                  <time class="activity-time" datetime="2026-08-27">Ayer</time>
+                </div>
+              </li>
+              <li class="activity-item">
+                <span class="activity-dot activity-dot--deploy" aria-hidden="true"></span>
+                <div class="activity-text">
+                  <strong>Deploy</strong> de Sistema de Inventario
+                  <time class="activity-time" datetime="2026-08-26">Hace 2 días</time>
+                </div>
+              </li>
+              <li class="activity-item">
+                <span class="activity-dot activity-dot--commit" aria-hidden="true"></span>
+                <div class="activity-text">
+                  <strong>Merge</strong> en Portafolio Personal
+                  <time class="activity-time" datetime="2026-08-25">Hace 3 días</time>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Card de notas: ocupa ancho completo en fila inferior -->
+        <article class="card card--notes">
+          <header class="card-header">
+            <h2 class="card-title">Notas del Sprint</h2>
+          </header>
+          <div class="card-body">
+            <ul class="notes-list">
+              <li class="note-item">
+                <span class="note-bullet" aria-hidden="true">&#9679;</span>
+                Finalizar maquetación responsive del dashboard antes del viernes.
+              </li>
+              <li class="note-item">
+                <span class="note-bullet" aria-hidden="true">&#9679;</span>
+                Revisar accesibilidad de formularios en la página de perfil.
+              </li>
+              <li class="note-item">
+                <span class="note-bullet" aria-hidden="true">&#9679;</span>
+                Documentar decisiones de diseño CSS (Grid vs Flex) en README.md.
+              </li>
+              <li class="note-item">
+                <span class="note-bullet" aria-hidden="true">&#9679;</span>
+                Preparar presentación de resultados del laboratorio Unidad 3.
+              </li>
+            </ul>
+          </div>
+        </article>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
